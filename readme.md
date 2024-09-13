@@ -1,4 +1,5 @@
-You said:
+# Speech-Translator:
+
 i want to work on these ideas and implement them one by one
 
 Implement real-time translation while the user speaks, rather than waiting until the recording finishes.Use speech-to-text (STT) as a streaming process and provide continuous translation output as audio is recorded.
