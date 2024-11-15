@@ -21,7 +21,7 @@ VocalVerbum is a speech-based application that captures audio input, transcribes
 
 ## Architecture Diagram
 
-![Architecture Overview](imgs/architecture.png)
+![Architecture Overview](imgs/multilingual architecture.png)
 
 ## Setup
 
