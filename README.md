@@ -19,6 +19,10 @@ VocalVerbum is a speech-based application that captures audio input, transcribes
 - **TTS Models**: Tacotron2 and HiFi-GAN (for audio synthesis)
 - **Environment Configuration**: `.env` file for managing API tokens and settings
 
+## Architecture Diagram
+
+![Architecture Overview](imgs/architecture.png)
+
 ## Setup
 
 1. **Clone the Repository**:
@@ -41,6 +45,9 @@ VocalVerbum is a speech-based application that captures audio input, transcribes
    ```bash
     streamlit run app.py
 
+## User Interface
+
+![Application Interface](imgs/interface.png)
 
 ## Usage
 1. Click on Record Audio to capture your voice for 10 seconds.
