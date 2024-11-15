@@ -5,7 +5,6 @@ from lang_detect import detect_language
 from translate import translate_text
 from tts import text_to_speech
 
-# Initialize session state
 if "audio_file" not in st.session_state:
     st.session_state["audio_file"] = None
 if "transcription" not in st.session_state:
@@ -15,18 +14,15 @@ if "detected_lang" not in st.session_state:
 if "translations" not in st.session_state:
     st.session_state["translations"] = {}
 
-# Title and Instructions
 st.title("VocalVerbum: Multilingual Speech Translator")
 st.write("Record audio, transcribe, translate, and listen to translations.")
 
-# Sidebar instructions
 st.sidebar.title("Instructions")
 st.sidebar.write("""
 1. Click 'Record' to capture audio.
 2. The app will transcribe, detect the language, translate, and provide audio playback.
 """)
 
-# Step 1: Record Audio
 if st.button("Record Audio"):
     with st.spinner("Recording for 10 seconds..."):
         audio_file = record_audio(duration=10)
@@ -36,11 +32,9 @@ if st.button("Record Audio"):
         st.session_state["detected_lang"] = None     # Reset detected language state
         st.session_state["translations"] = {}        # Reset translations state
 
-# Display recorded audio if available
 if st.session_state["audio_file"]:
     st.audio(st.session_state["audio_file"], format="audio/wav")
 
-    # Step 2: Transcribe the recorded audio
     if st.session_state["transcription"] is None:
         transcription = transcribe_audio(st.session_state["audio_file"])
         if transcription:
@@ -53,7 +47,6 @@ if st.session_state["audio_file"]:
         st.subheader("Transcription")
         st.write(st.session_state["transcription"])
 
-    # Step 3: Detect language
     if st.session_state["transcription"] and st.session_state["detected_lang"] is None:
         detected_lang = detect_language(st.session_state["transcription"])
         st.session_state["detected_lang"] = detected_lang
@@ -63,7 +56,6 @@ if st.session_state["audio_file"]:
         st.subheader("Detected Language")
         st.write(st.session_state["detected_lang"])
 
-    # Step 4: Translate into multiple languages
     if st.session_state["detected_lang"] and not st.session_state["translations"]:
         translations = translate_text(st.session_state["transcription"], st.session_state["detected_lang"])
         st.session_state["translations"] = translations
@@ -74,7 +66,6 @@ if st.session_state["audio_file"]:
             if translation:
                 st.write(f"**{lang.upper()}:** {translation}")
 
-                # Step 5: Text-to-Speech for each translation
                 if st.button(f"Play {lang.upper()} Translation", key=lang):
                     with st.spinner(f"Playing translation in {lang}..."):
                         text_to_speech(translation, lang=lang)
